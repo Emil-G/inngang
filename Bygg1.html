@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringetablå</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header {
+            background-color: #00529B;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        #search-box {
+            width: calc(100% - 40px);
+            padding: 12px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        ul {
+            list-style: none;
+            padding: 0 20px 20px 20px;
+            margin: 0;
+        }
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        .name {
+            font-weight: 500;
+        }
+        .apartment-number {
+            color: #555;
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Ringetablå</h1>
+    </header>
+    <input type="text" id="search-box" onkeyup="filterNames()" placeholder="Søk etter navn...">
+    <ul id="name-list">
+        <li>
+            <span class="name">Ola Nordmann</span>
+            <span class="apartment-number">1101</span>
+        </li>
+        <li>
+            <span class="name">Kari Hansen</span>
+            <span class="apartment-number">1102</span>
+        </li>
+        <li>
+            <span class="name">Arne Johansen</span>
+            <span class="apartment-number">1201</span>
+        </li>
+        <li>
+            <span class="name">Ingrid Larsen</span>
+            <span class="apartment-number">1202</span>
+        </li>
+        <li>
+            <span class="name">Per Olsen</span>
+            <span class="apartment-number">2101</span>
+        </li>
+        <li>
+            <span class="name">Silje Nilsen</span>
+            <span class="apartment-number">2102</span>
+        </li>
+        <li>
+            <span class="name">Bjørn Eriksen</span>
+            <span class="apartment-number">2201</span>
+        </li>
+        <li>
+            <span class="name">Eva Kristiansen</span>
+            <span class="apartment-number">2202</span>
+        </li>
+    </ul>
+</div>
+
+<script>
+function filterNames() {
+    const input = document.getElementById('search-box');
+    const filter = input.value.toUpperCase();
+    const ul = document.getElementById('name-list');
+    const li = ul.getElementsByTagName('li');
+
+    for (let i = 0; i < li.length; i++) {
+        const nameSpan = li[i].getElementsByClassName('name')[0];
+        if (nameSpan) {
+            const txtValue = nameSpan.textContent || nameSpan.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>
+
+</body>
+</html>
